@@ -1,0 +1,19 @@
+{
+  "name": "@nyu8/flarum-email-filter",
+  "version": "1.0.0",
+  "description": "Filter emails registering your Flarum site with whitelist, blacklist and even regular expressions.",
+  "repository": "https://github.com/nyu8/flarum-email-filte.git",
+  "author": "NYU8 <dev@nyu8.com>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "dev": "webpack --mode development --watch",
+    "build": "webpack --mode production"
+  },
+  "devDependencies": {
+    "flarum-tsconfig": "^1.0.0",
+    "flarum-webpack-config": "^1.0.0",
+    "webpack": "^4.46.0",
+    "webpack-cli": "^4.7.2"
+  }
+}
