@@ -10,6 +10,6 @@ class RuleValidator extends AbstractValidator
     'rule_type' => ['required', 'integer'],
     'name' => ['required', 'string'],
     'value' => ['required', 'string'],
-    'active' => ['required', 'boolean']
+    'active' => ['required', 'integer']
   ];
 }

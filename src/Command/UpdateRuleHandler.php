@@ -43,7 +43,7 @@ class UpdateRuleHandler
       $rule->updateValue($attributes['value']);
     }
 
-    if (isset($attributes['active']) && $attributes['active']) {
+    if (isset($attributes['active'])) {
       $validate['active'] = $attributes['active'];
       $rule->updateActive($attributes['active']);
     }

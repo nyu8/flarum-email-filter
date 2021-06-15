@@ -11,6 +11,7 @@
     "build": "webpack --mode production"
   },
   "devDependencies": {
+    "@types/mithril": "^2.0.7",
     "flarum-tsconfig": "^1.0.0",
     "flarum-webpack-config": "^1.0.0",
     "webpack": "^4.46.0",

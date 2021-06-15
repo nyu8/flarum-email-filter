@@ -8,13 +8,13 @@ use Flarum\Database\AbstractModel;
  * @property int $rule_type
  * @property string $name
  * @property string $value
- * @property bool $active
+ * @property int $active
  */
 class Rule extends AbstractModel
 {
   protected $table = 'email_rules';
 
-  public static function build(int $ruleType, string $name, string $value, bool $active)
+  public static function build(int $ruleType, string $name, string $value, int $active)
   {
     $rule = new static();
 
@@ -40,9 +40,9 @@ class Rule extends AbstractModel
     return $this;
   }
 
-  public function updateActive(bool $active)
+  public function updateActive(int $active)
   {
-    $this->active = $active;
+    $this->active = $active > 0 ? 1 : 0;
 
     return $this;
   }
