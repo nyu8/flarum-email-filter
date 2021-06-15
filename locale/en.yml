@@ -1,2 +1,5 @@
 nyu8-email-filter:
-  test: test
+  forum:
+    generic_exception: Something went wrong. Contact this community's administrator.
+    blacklist_exception: This email or its domain is on this community's blacklist.
+    whitelist_exception: This email or its domain is not on this community's whitelist.

@@ -25,6 +25,56 @@ class EmailCustomValidator
     $this->translator = $translator;
   }
 
+  public function validate(string $email)
+  {
+    $activeRules = Rule::all()->where('active', 1);
+    $blacklistLiteralRules = $activeRules->where('rule_type', 3)->toArray();
+    $blacklisted = false;
+
+    if (static::checkLiteral($email, $blacklistLiteralRules)) {
+      $this->raiseBlacklistException();
+    }
+
+    $blackListRegexRules = $activeRules->where('rule_type', 4)->toArray();
+
+    if (static::checkRegex($email, $blackListRegexRules)) {
+      $blacklisted = true;
+    }
+
+    $whiteListLiteralRules = $activeRules->where('rule_type', 1)->toArray();
+    $whiteListRegexRules = $activeRules->where('rule_type', 2)->toArray();
+
+    if ($blacklisted) {
+      if (static::checkLiteral($email, $whiteListLiteralRules)) {
+        return;
+      } else {
+        $this->raiseBlacklistException();
+      }
+    }
+
+    if (count($whiteListLiteralRules) && count($whiteListRegexRules) === 0) {
+      return;
+    }
+
+    if (static::checkLiteral($email, $whiteListLiteralRules) || static::checkRegex($email, $whiteListRegexRules)) {
+      return;
+    }
+
+    $this->raiseWhitelistException();
+  }
+
+  private function raiseBlacklistException()
+  {
+    $message = $this->settings->get('nyu8-email-filter.custom_failure_message', $this->translator->trans('nyu8-email-filter.forum.blacklist_exception'));
+    throw new ValidationException($message);
+  }
+
+  private function raiseWhitelistException()
+  {
+    $message = $this->settings->get('nyu8-email-filter.custom_failure_message', $this->translator->trans('nyu8-email-filter.forum.whitelist_exception'));
+    throw new ValidationException($message);
+  }
+
   /**
    * @param Rule[] $rules
    */

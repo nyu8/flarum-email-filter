@@ -1,12 +1,13 @@
 <?php
 
 use Flarum\Extend;
-
+use Flarum\User\Event\Saving;
 use FoF\Components\Extend\AddFofComponents;
 use NYU8\FlarumEmailFilter\Api\Controller\CreateRuleController;
 use NYU8\FlarumEmailFilter\Api\Controller\DeleteRuleController;
 use NYU8\FlarumEmailFilter\Api\Controller\ListRulesController;
 use NYU8\FlarumEmailFilter\Api\Controller\UpdateRuleController;
+use NYU8\FlarumEmailFilter\Event\UserSavingListener;
 
 return [
   (new AddFofComponents()),
@@ -20,4 +21,6 @@ return [
     ->post('/email_rules', 'email_rules.create', CreateRuleController::class)
     ->delete('/email_rules/{id}', 'email_rules.delete', DeleteRuleController::class)
     ->patch('/email_rules/{id}', 'email_rules.update', UpdateRuleController::class),
+  (new Extend\Event)
+    ->listen(Saving::class, UserSavingListener::class),
 ];
