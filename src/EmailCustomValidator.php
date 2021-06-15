@@ -28,21 +28,21 @@ class EmailCustomValidator
   public function validate(string $email)
   {
     $activeRules = Rule::all()->where('active', 1);
-    $blacklistLiteralRules = $activeRules->where('rule_type', 3)->toArray();
+    $blacklistLiteralRules = $activeRules->where('rule_type', 3);
     $blacklisted = false;
 
     if (static::checkLiteral($email, $blacklistLiteralRules)) {
       $this->raiseBlacklistException();
     }
 
-    $blackListRegexRules = $activeRules->where('rule_type', 4)->toArray();
+    $blackListRegexRules = $activeRules->where('rule_type', 4);
 
     if (static::checkRegex($email, $blackListRegexRules)) {
       $blacklisted = true;
     }
 
-    $whiteListLiteralRules = $activeRules->where('rule_type', 1)->toArray();
-    $whiteListRegexRules = $activeRules->where('rule_type', 2)->toArray();
+    $whiteListLiteralRules = $activeRules->where('rule_type', 1);
+    $whiteListRegexRules = $activeRules->where('rule_type', 2);
 
     if ($blacklisted) {
       if (static::checkLiteral($email, $whiteListLiteralRules)) {
@@ -66,19 +66,19 @@ class EmailCustomValidator
   private function raiseBlacklistException()
   {
     $message = $this->settings->get('nyu8-email-filter.custom_failure_message', $this->translator->trans('nyu8-email-filter.forum.blacklist_exception'));
-    throw new ValidationException($message);
+    throw new ValidationException([$message]);
   }
 
   private function raiseWhitelistException()
   {
     $message = $this->settings->get('nyu8-email-filter.custom_failure_message', $this->translator->trans('nyu8-email-filter.forum.whitelist_exception'));
-    throw new ValidationException($message);
+    throw new ValidationException([$message]);
   }
 
   /**
    * @param Rule[] $rules
    */
-  private static function checkRegex(string $email, array $rules)
+  private static function checkRegex(string $email, mixed $rules)
   {
     foreach ($rules as $rule) {
       if (preg_match('/' . $rule->value . '/', $email, $_match)) {
@@ -93,7 +93,7 @@ class EmailCustomValidator
    *
    * @param Rule[] $rules
    */
-  private static function checkLiteral(string $email, array $rules)
+  private static function checkLiteral(string $email, mixed $rules)
   {
     foreach ($rules as $rule) {
       if ($email == $rule->value) {
