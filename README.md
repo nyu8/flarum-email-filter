@@ -1,6 +1,6 @@
 # flarum-email-filter
 
-![License](https://img.shields.io/badge/license-MIT-blue.svg) [![Latest Stable Version](https://img.shields.io/packagist/v/nyu8/flarum-email-filter.svg)](https://packagist.org/packages/nyu8/flarum-email-filter)
+![License](https://badgen.net/packagist/license/nyu8/flarum-email-filter) [![Latest Stable Version](https://badgen.net/packagist/v/nyu8/flarum-email-filter)](https://packagist.org/packages/nyu8/flarum-email-filter)
 
 A [Flarum](http://flarum.org) extension. Filter emails registering your Flarum site with whitelist, blacklist and even regular expressions.
 
