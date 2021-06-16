@@ -31,7 +31,7 @@ class UserSavingListener
     $email = Arr::get($event->data, 'attributes.email');
 
     if (!$email) {
-      throw new ValidationException($this->translator->trans('nyu8-email-filter.forum.generic_exception'));
+      return;
     }
 
     $this->emailValidator->validate($email);
