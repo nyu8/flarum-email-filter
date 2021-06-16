@@ -1,0 +1,28 @@
+nyu8-email-filter:
+  admin:
+    general: 通用
+    custom_failure_message_label: 自定义失败信息
+    custom_failure_message_hint: 当邮箱地址无效时显示该失败信息。此处留空则显示默认信息。
+    rule_settings: 过滤规则
+    name_placeholder: 规则名
+    invalid_regular_expression: 无效的正则表达式
+    whitelist_literal:
+      label: 白名单
+      description: 以下邮箱地址属于白名单内
+      placeholder: 邮箱地址...
+    whitelist_regex:
+      label: 白名单正则表达式
+      description: 匹配以下正则表达式的邮件地址属于白名单内
+      placeholder: 正则表达式...
+    blacklist_literal:
+      label: 黑名单
+      description: 以下邮箱地址属于黑名单内
+      placeholder: 邮箱地址...
+    blacklist_regex:
+      label: 黑名单正则表达式
+      description: 匹配以下正则表达式的邮件地址属于黑名单内
+      placeholder: 正则表达式...
+  forum:
+    generic_exception: 哎呀～出错了。请联系社区管理员寻求帮助。
+    blacklist_exception: 该邮件地址或者域名后缀属于社区黑名单。
+    whitelist_exception: 该邮件地址或者域名后缀不在社区白名单上。
