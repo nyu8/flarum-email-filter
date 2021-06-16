@@ -78,7 +78,7 @@ class EmailCustomValidator
   /**
    * @param Rule[] $rules
    */
-  private static function checkRegex(string $email, mixed $rules)
+  private static function checkRegex(string $email, $rules)
   {
     foreach ($rules as $rule) {
       if (preg_match('/' . $rule->value . '/', $email, $_match)) {
@@ -93,7 +93,7 @@ class EmailCustomValidator
    *
    * @param Rule[] $rules
    */
-  private static function checkLiteral(string $email, mixed $rules)
+  private static function checkLiteral(string $email, $rules)
   {
     foreach ($rules as $rule) {
       if ($email == $rule->value) {
