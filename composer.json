@@ -1,6 +1,6 @@
 {
     "name": "nyu8/flarum-email-filter",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "description": "Filter emails registering your Flarum site with whitelist, blacklist and even regular expressions.",
     "type": "flarum-extension",
     "license": "MIT",
