@@ -78,7 +78,7 @@ class EmailCustomValidator
     /**
      * @param Rule[] $rules
      */
-    private static function checkRegex(string $email, array $rules, bool $caseSensitive = false): bool
+    private static function checkRegex(string $email, $rules, bool $caseSensitive = false): bool
     {
         foreach ($rules as $rule) {
             if (preg_match('/' . $rule->value . '/' . ($caseSensitive ? '' : 'i'), $email, $_match)) {
@@ -93,7 +93,7 @@ class EmailCustomValidator
      *
      * @param Rule[] $rules
      */
-    private static function checkLiteral(string $email, array $rules, bool $caseSensitive = false): bool
+    private static function checkLiteral(string $email, $rules, bool $caseSensitive = false): bool
     {
         foreach ($rules as $rule) {
             if ($caseSensitive && $email == $rule->value) {
